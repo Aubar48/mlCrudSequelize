@@ -11,7 +11,6 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const controller = {
 	index: (req, res) => {
-		// Do the magic con base de datos
 		const productsVisited = db.Product.findAll({
 			where: {
 				categoryId: 1
@@ -21,12 +20,7 @@ const controller = {
 			where: {
 				categoryId: 2
 			}
-			/* JSON formato viejo */
-			// return res.render('index', {
-			// 	productsVisited: products.filter(product => product.category === "visited"),
-			// 	productsInSale: products.filter(product => product.category === "in-sale"),
-			// 	toThousand
-			// })
+
 		});
 		Promise.all([productsVisited, productsInSale])
 			.then(([productsVisited, productsInSale]) => {
@@ -40,7 +34,6 @@ const controller = {
 		/*lo que va afuera de la promesa se ejecuta primero */
 	},
 	search: (req, res) => {
-		// Do the magic
 		db.Product.findAll({
 			where: {
 				[Op.or]: [
@@ -65,7 +58,6 @@ const controller = {
 				})
 			})
 			.catch(err => console.log(err))
-		// const results = products.filter(products => products.name.toLowerCase().includes(req.query.keywords.toLowerCase()))
 	},
 }
 

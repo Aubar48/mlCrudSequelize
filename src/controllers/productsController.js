@@ -28,7 +28,6 @@ const controller = {
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		// Do the magic
 		db.Product.findByPk(req.params.id)
 			.then(product => {
 				return res.render('detail', {
@@ -36,7 +35,7 @@ const controller = {
 					toThousand
 				})
 			})
-			// const product = products.find(product => product.id === +req.params.id)
+			
 			.catch(err => console.log(err))
 	},
 
